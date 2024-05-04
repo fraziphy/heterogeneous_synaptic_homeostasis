@@ -147,7 +147,7 @@ Modeling two-cortical column:
 - NREM & Wake: MPF.beta_ampa_input = 0 (or MPF.beta_ampa_input != 0 and ex_input=0)
 - Evoked activity:
 >> - NREM: MPF.beta_ampa_input = 1
-> - Wake: MPF.beta_ampa_input => 2 (In our study we set MPF.beta_ampa_input=MPF.beta_ampa_inter to avoid sturation of evoked responses)
+- Wake: MPF.beta_ampa_input => 2 (In our study we set MPF.beta_ampa_input=MPF.beta_ampa_inter to avoid sturation of evoked responses)
 
 Python requirements:
 - _model_parameters_functions.py_

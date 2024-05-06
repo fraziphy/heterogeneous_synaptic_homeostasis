@@ -14,8 +14,8 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mail-type=FAIL
 #SBATCH --mail-user=farhad.razi01@estudiant.upf.edu
-#SBATCH --output=output_run_%x_%a.out
-#SBATCH --error=error_run_%x_%a.err
+#SBATCH --output=output_%x_%a.out
+#SBATCH --error=error_%x_%a.err
 # 
 # 
 # 

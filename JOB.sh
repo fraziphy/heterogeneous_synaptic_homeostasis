@@ -144,7 +144,20 @@ done
 #                          7th Block                         #
 #                          Analysis                          #
 ##############################################################
-sbatch --dependency=aftercorr:${JOBS%%,} -J ANALYSIS_MPI --mem=25G -N 1 -n 10 ./slurm_scripts/ANALYSIS.sbatch "${DIRECTORY}" &>> ./textfileme.txt
+jid3=$(sbatch --dependency=aftercorr:${JOBS%%,} -J analysis --mem=25G -N 1 -n 10 ./slurm_scripts/ANALYSIS.sbatch "${DIRECTORY}")
+#
+#
+#
+#
+#
+#
+#
+#
+##############################################################
+#                          8th Block                         #
+#                            Plot                            #
+##############################################################
+sbatch --dependency=aftercorr:${jid3##* } -J plot --mem=25G ./slurm_scripts/PLOT.sbatch "${DIRECTORY}"
 #
 #
 #

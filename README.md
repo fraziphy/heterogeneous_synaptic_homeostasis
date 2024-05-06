@@ -109,7 +109,6 @@ The Python scripts are located within the _python_scripts_ directory and include
 - _ANALYSIS_MPI.py_ 
 - _PLOT_FIGURES.py_
 
-**Important Note:** If you wish to implement simulations on your local machine using only Python scripts, you have to provide the right variables described here either as environment variables or by changing them manually within the Python scripts.
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
 
@@ -131,6 +130,24 @@ The Python scripts are located within the _python_scripts_ directory and include
 - spontaneous: A boolean value to determine if simulations are stochastic (spontaneous=True) or deterministic (spontaneous=False), provided by the **SPONTANEOUS** environment variable.
 - ex_input: The intensity of the stimuli provided by the **SLURM_ARRAY_TASK_ID** environment variable divided by 100.
 
+**Important Note:** If you wish to implement simulations on your local machine using only Python scripts, you have to provide the right variables described here either as environment variables or by changing them manually within the Python scripts. For instance, the following environment variables can be defined as:
+```
+$ export DIRECTORY=/path/to/the/repository
+$ export Beta_Intra=1.5
+$ export Beta_Input=2.
+$ export Beta_Inter=0.
+$ export STD_NOISE=1.2
+$ export STOCHASTIC=1
+$ export SPONTANEOUS=0
+$ export SLURM_ARRAY_TASK_ID=9
+
+```
+Following that, to run the **_NUMERICAL_SIMULATION.py_** script, propmt the following command from the repository directory:
+
+```
+$ python3 ./python_scripts/NUMERICAL_SIMULATION.py
+```
+Note to adjust the values according to your specific setup and requirements.
 
 **Modeling one-cortical column:**
 - NREM: MPF.beta_ampa_intra = 1, MPF.beta_ampa_inter = 0
@@ -173,7 +190,7 @@ The Python scripts are located within the _python_scripts_ directory and include
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
 
-**_ANALYSIS_MPI.py_:** This script is aimed at carrying out the analysis by parallelizing jobs among processing units. The only necessary argument to provide is the DIRECTORY.
+**_ANALYSIS_MPI.py_:** This script is aimed at carrying out the analysis by parallelizing jobs among computing processing units. The only necessary argument to provide is the DIRECTORY.
 
 **Python requirements:**
 - functions_analysis
@@ -183,6 +200,12 @@ The Python scripts are located within the _python_scripts_ directory and include
 - pandas
 - os
 - mpi4py
+
+to run the **_ANALYSIS_MPI.py_** script on your local machine on 10 computing processing units, propmt the following command from the repository directory:
+
+```
+$ mpirun -10 python3 ./python_scripts/ANALYSIS_MPI.py
+```
 
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
@@ -198,6 +221,13 @@ The Python scripts are located within the _python_scripts_ directory and include
 - matplotlib
 - mpl_toolkits
 - seaborn
+
+to run the **_PLOT_FIGURES.py_** script on your local machine, propmt the following command from the repository directory:
+
+```
+$ mpirun python3 ./python_scripts/PLOT_FIGURES.py
+```
+
 
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------

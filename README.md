@@ -140,7 +140,6 @@ $ export STD_NOISE=1.2
 $ export STOCHASTIC=1
 $ export SPONTANEOUS=0
 $ export SLURM_ARRAY_TASK_ID=9
-
 ```
 Following that, to run the **_NUMERICAL_SIMULATION.py_** script, propmt the following command from the repository directory:
 

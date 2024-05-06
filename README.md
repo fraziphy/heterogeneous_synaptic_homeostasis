@@ -73,7 +73,7 @@ Please, make sure you provide the correct module to load in each sbatch script i
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
 
-_SIMULATION.sbatch_ is aimed to impliment the _NUMERICAL_SIMULATION.py_ script in the _python_scripts_ directory for numerical simulations of the model. There are seven argument necessary to privide as:
+**_SIMULATION.sbatch_** is aimed to impliment the _NUMERICAL_SIMULATION.py_ script in the _python_scripts_ directory for numerical simulations of the model. There are seven argument necessary to privide as:
 - DIRECTORY: The directory of the repository on the machine,
 - Beta_Intra: The values for synaptic upscaling of intra-synaptic connections
 - Beta_Input: The values for synaptic upscaling of synaptic connections where stimulus is applied
@@ -87,12 +87,12 @@ Additinally, it assign a job array value that corresponds to the intensity of th
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
 
-_ANALYSIS.sbatch_ is aimed to impliment the _ANALYSIS_MPI.py_ script for analysis of the simulations. The only argument neccessary to provide is the DIRECTORY.
+**_ANALYSIS.sbatch_** is aimed to impliment the _ANALYSIS_MPI.py_ script for analysis of the simulations. The only argument neccessary to provide is the DIRECTORY.
 
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
 
-_PLOT.sbatch_ is aimed to impliment the _PLOT_FIGURES.py_ script for plotting figures of the simulations. The only argument neccessary to provide is the DIRECTORY.
+**_PLOT.sbatch_** is aimed to impliment the _PLOT_FIGURES.py_ script for plotting figures of the simulations. The only argument neccessary to provide is the DIRECTORY.
 
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
@@ -108,20 +108,19 @@ The Python scripts are located within the _python_scripts_ directory, including:
 - _NUMERICAL_SIMULATION.py_
 - _functions_analysis.py_
 - _ANALYSIS_MPI.py_ 
-- _NUMERICAL_SIMULATION.py_
 - _PLOT_FIGURES.py_
 
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
 
-_model_parameters_functions.py_ is aimed to assign the model parameters and definne the functions regarding numerical integrations.
+**_model_parameters_functions.py_** is aimed to assign the model parameters and definne the functions regarding numerical integrations.
 Python requirements:
 - numpy
 
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
 
-_NUMERICAL_SIMULATION.py_ is aimed to impliment the numerical integrations for a given set of variables. There are eight argument necessary to privide as:
+**_NUMERICAL_SIMULATION.py_** is aimed to impliment the numerical integrations for a given set of variables. There are eight argument necessary to privide as:
 - DIR: The directory of the repository on the machine,
 - MPF.beta_ampa_intra: The values for synaptic upscaling of intra-synaptic connections
 - MPF.beta_ampa_input: The values for synaptic upscaling of synaptic connections where stimulus is applied
@@ -131,25 +130,25 @@ _NUMERICAL_SIMULATION.py_ is aimed to impliment the numerical integrations for a
 - spontaneous: A boolian value to determine if simulations are stockastic (spontaneous=True) or deterministic (spontaneous=False)
 - ex_input: The intensity of the stimuli provided by the SLURM_ARRAY_TASK_ID enviroment variable divided by 100
 
-Modeling one-cortical column:
+**Modeling one-cortical column:**
 - NREM: MPF.beta_ampa_intra = 1, MPF.beta_ampa_inter = 0
 - Wake: MPF.beta_ampa_intra => 2, MPF.beta_ampa_inter = 0
-- Spontaneous activity:
-- NREM & Wake: MPF.beta_ampa_input = 0 (or MPF.beta_ampa_input != 0 and ex_input=0)
-- Evoked activity:
-- NREM: MPF.beta_ampa_input = 1
-- Wake: MPF.beta_ampa_input => 2
+- _Spontaneous activity_:
+    - NREM & Wake: MPF.beta_ampa_input = 0 (or MPF.beta_ampa_input != 0 and ex_input=0)
+- _Evoked activity_:
+    - NREM: MPF.beta_ampa_input = 1
+    - Wake: MPF.beta_ampa_input => 2
 
-Modeling two-cortical column:
+**Modeling two-cortical column:**
 - NREM: MPF.beta_ampa_intra = 1, MPF.beta_ampa_inter = 1
 - Wake: MPF.beta_ampa_intra => 2, MPF.beta_ampa_inter => 2 (the values for intra and inter are not chosen independently, i.e., they can get different values)
-- Spontaneous activity:
-- NREM & Wake: MPF.beta_ampa_input = 0 (or MPF.beta_ampa_input != 0 and ex_input=0)
-- Evoked activity:
-- NREM: MPF.beta_ampa_input = 1
-- Wake: MPF.beta_ampa_input => 2 (In our study we set MPF.beta_ampa_input=MPF.beta_ampa_inter to avoid sturation of evoked responses)
+- _Spontaneous activity_:
+    - NREM & Wake: MPF.beta_ampa_input = 0 (or MPF.beta_ampa_input != 0 and ex_input=0)
+- _Evoked activity_:
+    - NREM: MPF.beta_ampa_input = 1
+    - Wake: MPF.beta_ampa_input => 2 (In our study we set MPF.beta_ampa_input=MPF.beta_ampa_inter to avoid sturation of evoked responses)
 
-Python requirements:
+**Python requirements:**
 - _model_parameters_functions.py_
 - numpy
 - pandas
@@ -159,9 +158,38 @@ Python requirements:
 ------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------
 
-_functions_analysis.py_ is aimed to definne the functions regarding analysis.
-Python requirements:
+**_functions_analysis.py_** is aimed to definne the functions regarding analysis. It includes analysis of spontaneous charecteristics of firing rate signals and information content that evoked firing signals to stimuli carry about.
+
+**Python requirements:**
 - numpy
+- scipy
+- sklearn
+- pandas
+- pickle
+- sys
 
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
 
-Python requirements:
+**- _ANALYSIS_MPI.py_** is aimed to carry out the analysis by parralyzing jobs among processing units. The only argument neccessary to provide is the DIRECTORY.
+**Python requirements:**
+- functions_analysis
+- model_parameters_functions
+- numpy
+- pickle
+- pandas
+- os
+- mpi4py
+
+------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+
+**- _PLOT_FIGURES.py_** is aimed to carry out the analysis by parralyzing jobs among processing units. The only argument neccessary to provide is the DIRECTORY.
+**Python requirements:**
+- functions_analysis
+- model_parameters_functions
+- numpy
+- pickle
+- pandas
+- os
+- mpi4py

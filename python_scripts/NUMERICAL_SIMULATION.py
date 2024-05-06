@@ -46,7 +46,7 @@ if MPF.beta_ampa_intra != 1 or MPF.beta_ampa_inter >= 1:
 # Set number of trials
 n_trial = 1
 if stochastic:
-    n_trial = 2
+    n_trial = 500
 
 # Determine external input
 ex_input = int(os.environ.get("SLURM_ARRAY_TASK_ID")) / 100

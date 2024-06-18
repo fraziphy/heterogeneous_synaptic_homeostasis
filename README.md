@@ -159,7 +159,7 @@ Note to adjust the values according to your specific setup and requirements.
 
 **Modeling two-cortical column:**
 - NREM: MPF.beta_ampa_intra = 1, MPF.beta_ampa_inter = 1
-- Wake: MPF.beta_ampa_intra => 2, MPF.beta_ampa_inter => 2 (the values for intra and inter are not chosen independently, i.e., they can get different values)
+- Wake: MPF.beta_ampa_intra => 2, MPF.beta_ampa_inter => 2 (the values for intra and inter are chosen independently, i.e., they can get different values)
 - _Spontaneous activity_:
     - NREM & Wake: MPF.beta_ampa_input = 0 (or MPF.beta_ampa_input != 0 and ex_input=0)
 - _Evoked activity_:
